@@ -64,14 +64,14 @@ class Node():
     def printData(self):
         print(self.data)
 
-    def branch(self,valueLeft,valueRight):
+    def split(self, dataLeft, dataRight):
         """two children. each as variables which are themselves nodes with data can be inserted.
         This utilizes a recurrsive definition by referencing it's own class within the class."""
-        self.left = Node(valueLeft)
-        self.right = Node(valueRight)
+        self.left = Node(dataLeft)
+        self.right = Node(dataRight)
 
-    def printTree(self):
-        """prints the entire tree from left to right down the tree including the current node."""
+    def printTreeDepth(self):
+        """prints the entire tree from left to right down the tree including the current node via depth method."""
         # prints the current node.
         print(self.data)
         if self.left != None:
@@ -80,14 +80,26 @@ class Node():
             This printing uses depth method and goes all the way down the left before returning back up a layer and going down the right.
             Therefore printing all values in the tree."""
             # this prints the data on the left child and it's children in turn from left to right.
-            self.left.printTree()
+            self.left.printTreeDepth()
         if self.right != None:
             # this prints the data on the right child and it's children in turn from left to right.
-            self.right.printTree()
+            self.right.printTreeDepth()
+
+    def printTreeBreadth(self):
+        "this is the same as the other tree printing method however doing it layer by layer instead of via depth."
+        print(self.data)
+        if self.left != None:
+            self.left.printTreeBreadth()
+        if self.right != None: 
+            self.right.printTreeBreadth()
+
+
 
 
 root = Node(20)
-root.printData()
+root.split(14,6)
+root.left.split(10,4)
+root.printTree()
 
 """
 myStack = Stack()
